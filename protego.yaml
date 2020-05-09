@@ -1,0 +1,40 @@
+
+Account:
+ 
+  StoreJobReport:  true
+  # (String) The AWS region to be used.
+  Region: us-east-1
+
+# Global Configuration that will be applied for all the functions in that job scan. A function can override this configuration.
+Globals:
+
+  DefaultFailThreshold: None
+  ProtegoGeneratedRole: true
+
+  # The scanner features block, contains feature level configuration.
+  Features:
+    # This feature will scan the function code and configuration, generates a role and verify that the current function role has no redundant permissions.
+    PermissiveRole:
+      # (boolean) (Default: true) Indicates whether this feature should be scanned or skipped.
+      Enabled: true
+      FailThreshold: None
+    # This feature will scan the function code and alert if hard coded credentials are found in the code.
+    CredentialsUsage:
+      Enabled: true
+      FailThreshold: None
+    # This feature will scan the function dependencies and lookup protego vulnerability DB for any known vulnerable dependency.
+    VulnerableDependency:
+      Enabled: true
+      FailThreshold: None
+    # This feature will scan for any action (Like aws api call) that is not compliant with one or more compliance rules.
+    RuleViolation:
+      Enabled: true
+      FailThreshold: None
+
+# integrations section, will detail the integrations used to extract the functions information.
+Integrations:
+  Sam:
+    # (String) the relative path to the sam template file. (can be yaml OR json)
+    Template: template.yaml
+  Parameters:
+      ParamName: events/
