@@ -34,45 +34,14 @@ pipeline {
               }
             steps {
 
-                sh "/sourceguard-cli --src ./"
+                sh "protego proact  --input protego.yml"
 
-                   }
+                   
               }
            
-          stage('Docker image Build and scan prep') {
-             
-            steps {
 
-              sh 'docker build -t dhouari/sg .'
-              sh 'docker save dhouari/sg -o sg.tar'
-              
-             } 
-           }
     
-           stage('Docker image scan') {
-            
-               agent {
-
-                 docker { image 'sourceguard/sourceguard-cli' }
-   
-                   }
-               steps {
-                    
-                  sh "/sourceguard-cli -img sg.tar/"
-               
-                 
-                  }
-               }   
            
-           stage('Publish to Docker Hub') {
-           
-                  steps {
-                        
-                     withDockerRegistry(["https://registry.hub.docker.com", "docker_hub"]) {
-                      sh 'docker push dhouari/sg'
-                      
-                    }
-               }     
           }
     } 
 }
