@@ -1,5 +1,9 @@
 pipeline {
-      agent any
+     agent {
+
+              docker { image 'protego/protego-runtime:latest' }
+
+              }
       environment {
            
           CLOUDGUARD_KEY = credentials("CG_API_KEY")
@@ -20,11 +24,7 @@ pipeline {
       
        
          stage('CloudGuard Proact Code and Compliance Scan') {
-            agent {
-
-              docker { image 'protego/protego-runtime:latest' }
-
-              }
+            
             steps {
 
                 sh 'protego proact  --input protego.yml'
