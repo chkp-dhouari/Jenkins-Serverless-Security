@@ -1,10 +1,6 @@
 pipeline {
       agent any
-      environment {
-           
-          CLOUDGUARD_KEY = credentials("CG_API_KEY")
-      
-        }
+     
      stages {
           
          stage('Clone Github repository') {
