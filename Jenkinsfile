@@ -21,7 +21,7 @@ pipeline {
             steps {
                   
                 sh 'sudo npm install -g https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz'
-                sh 'cloudguard proact -i protego.yml '
+                sh 'cloudguard proact -m template.yaml '
                    
               }
            
