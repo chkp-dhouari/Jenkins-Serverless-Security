@@ -22,7 +22,7 @@ pipeline {
             
             steps {
               
-                withAWS(credentials: 'aws-credentials', region: 'us-east-1'){
+                withAWS(credentials: 'CGW', region: 'us-east-1'){
                     
          
              
