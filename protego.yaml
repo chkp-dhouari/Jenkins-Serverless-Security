@@ -30,5 +30,9 @@ Globals:
     RuleViolation:
       Enabled: true
       FailThreshold: None
+      
 
 # integrations section, will detail the integrations used to extract the functions information.
+ Integrations:
+  Sam:
+    Template: template.yaml
