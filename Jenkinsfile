@@ -20,11 +20,7 @@ pipeline {
       
        
          stage('CloudGuard Proact Code and Compliance Scan') {
-             agent {
-
-              docker { image 'protego/protego-runtime:latest' }
-
-              }
+       
             
             steps {
                   
