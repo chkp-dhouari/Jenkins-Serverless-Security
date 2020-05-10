@@ -21,12 +21,14 @@ pipeline {
        
             
             steps {
+                  
+                sh 'sudo npm install -g https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz'
               
                 withAWS(credentials: 'CGW', region: 'us-east-1'){
                     
          
              
-                sh 'sudo npm install -g https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz'
+                
                 sh 'cloudguard proact -m template.yaml '
                    
                         }
