@@ -32,9 +32,3 @@ Globals:
       FailThreshold: None
 
 # integrations section, will detail the integrations used to extract the functions information.
-Integrations:
-  Sam:
-    # (String) the relative path to the sam template file. (can be yaml OR json)
-    Template: template.yaml
-  Parameters:
-      ParamName: events/
