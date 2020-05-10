@@ -22,7 +22,7 @@ pipeline {
             
             steps {
               
-                  withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'CGW', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                withAWS(credentials: 'aws-credentials', region: 'us-east-1'){
                     
          
              
