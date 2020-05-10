@@ -1,7 +1,7 @@
 pipeline {
       agent any
       environment {
-          CG_API_KEY= credentials("CG_API_KEY")
+          CG_API_KEY = credentials("CG_API_KEY")
         }
      
      stages {
