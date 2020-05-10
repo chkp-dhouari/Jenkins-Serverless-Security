@@ -27,7 +27,7 @@ pipeline {
             
             steps {
 
-                sh 'protego proact -i protego.yml'
+                sh 'protego proact -i protego.yml -t protego-config.json'
 
                    
               }
