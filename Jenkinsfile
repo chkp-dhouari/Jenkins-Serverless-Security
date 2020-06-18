@@ -18,20 +18,16 @@ pipeline {
       
        
          stage('CloudGuard Proact Code and Compliance Scan') {
-       
-            
-            steps {
-                  
-                sh 'sudo npm install -g https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz'
-              
-                withAWS(credentials: 'CGW', region: 'us-east-1'){
-                    
-         
-             
-                
-                sh 'cloudguard proact -m template.yaml '
-                   
-                        }
+             agent {
+                   docker { image 'deanj08/devsecops' }
+                    }
+              steps {
+                withAWS(credentials: 'AWScreds', region: 'us-east-1'){
+                   sh 'sudo npm install -g https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz' 
+                   sh 'cloudguard proact -i protego.yaml'
+                   sh 'aws cloudformation package --template template.yml --s3-bucket cg-cicd --output-template template-export.yml
+                   sh 'aws cloudformation deploy --template-file template-export.yml --stack-name demo-pipeline-prod-stack --capabilities CAPABILITY_IAM'
+                    }
                      
 
                }
