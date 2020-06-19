@@ -17,9 +17,8 @@ pipeline {
        
          stage('CloudGuard Proact Code and Compliance Scan') {
                
-               agent {
-                   docker { image 'deanj08/devsecops' }
-                    }
+               
+               
               steps {
                 withAWS(credentials: 'AWScreds', region: 'us-east-1'){
                    sh 'sudo apt-get update'
