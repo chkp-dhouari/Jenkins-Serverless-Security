@@ -1,6 +1,6 @@
 pipeline {
       agent any
-      
+      withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin'])
       
      
      stages {
@@ -18,7 +18,8 @@ pipeline {
       
        
          stage('CloudGuard Proact Code and Compliance Scan') {
-             agent {
+               
+               agent {
                    docker { image 'deanj08/devsecops' }
                     }
               steps {
