@@ -1,8 +1,6 @@
 pipeline {
       agent any
-      withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin:/Users/dasig/Library/Containers'])
-      
-     
+
      stages {
           
          stage('Clone Github repository') {
