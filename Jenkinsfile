@@ -38,6 +38,7 @@ pipeline {
                steps {
                  withAWS(credentials: 'awscreds', region: 'us-east-1'){
                     sh 'cloudguard fsp -C template.yml --region us-east-1'
+                    sh 'apt-get update && apt install python3-pip -y &&  pip3 install awscli --upgrade'
                     sh 'aws cloudformation package --template template.protected.yml --s3-bucket cicd-cp --output-template output.template.yml'
                     sh 'aws cloudformation deploy --template-path ${context.WORKSPACE}/output.template.yml --stack-name myapp --capabilities CAPABILITY_IAM'
 
