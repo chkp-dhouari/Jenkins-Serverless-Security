@@ -1,22 +1,14 @@
 pipeline {
       agent any
-
      stages {
-          
-         stage('Clone Github repository') {
-            
+         
+          stage('Clone Github repository') { 
            steps {
-              
              checkout scm
-           
              }
-  
-          }
+           }
            
-      
-       
           stage('CloudGuard Proact Code and Compliance Scan'){
-           
              agent {
               docker { image 'dhouari/cloudguard:test'
                       args '--entrypoint= -v /var/run/docker.sock:/var/run/docker.sock'
@@ -24,15 +16,23 @@ pipeline {
                     }
            
               steps {
+                 script {      
+                    try { 
                 withAWS(credentials: 'awscreds', region: 'us-east-1'){
                    sh 'cloudguard proact -vm template.yml'
+                        }
+                    } catch (Exception e) {
+    
+                   echo "Code Analysis is BLOCK and recommend not using the source code"  
                      }
-                  }
-             }
-          stage('adding runtime security with FSP and deploy serverless app'){
-            agent {
-               docker { image 'dhouari/cloudguard:test'
-                      args '--entrypoint= -v /var/run/docker.sock:/var/run/docker.sock' }
+                   }
+                 }
+               }
+           
+           stage('adding runtime security with FSP and deploy serverless app'){
+              agent {
+                docker { image 'dhouari/cloudguard:test'
+                         args '--entrypoint= -v /var/run/docker.sock:/var/run/docker.sock' }
                     }
            
                steps {
