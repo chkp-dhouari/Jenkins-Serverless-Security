@@ -24,7 +24,7 @@ pipeline {
            
               steps {
                 withAWS(credentials: 'awscreds', region: 'us-east-1'){
-                   sh 'cloudguard proact -m template.yml'
+                   sh 'cloudguard proact -vm template.yml'
                      }
                   }
              }
