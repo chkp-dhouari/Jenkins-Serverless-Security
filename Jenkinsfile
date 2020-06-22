@@ -19,7 +19,7 @@ pipeline {
            
              agent {
               docker { image 'dhouari/cloudguard:beta'
-                       args '--entrypoint=' 
+                      args '--entrypoint=' }
                     }
            
               steps {
