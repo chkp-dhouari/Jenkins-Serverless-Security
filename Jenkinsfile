@@ -19,7 +19,7 @@ pipeline {
            
              agent {
               docker { image 'dhouari/cloudguard' 
-                       args '--entrypoint="cloudguard"'}
+                       args '--entrypoint='cloudguard''}
                    }
            
               steps {
@@ -31,7 +31,7 @@ pipeline {
           stage('adding runtime security with FSP and deploy serverless app'){
             agent {
               docker { image 'dhouari/cloudguard' 
-                       args '--entrypoint="cloudguard"'}
+                       args '--entrypoint='cloudguard''}
                      }
                steps {
                  withAWS(credentials: 'awscreds', region: 'us-east-1'){
