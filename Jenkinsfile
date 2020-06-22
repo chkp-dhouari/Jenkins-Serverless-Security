@@ -23,7 +23,7 @@ pipeline {
                         }
                     } catch (Exception e) {
     
-                   echo "Code Analysis is BLOCK and recommend not using the source code"  
+                   echo "Movin on to FSP"  
                      }
                    }
                  }
@@ -37,7 +37,7 @@ pipeline {
            
                steps {
                  withAWS(credentials: 'awscreds', region: 'us-east-1'){
-                    sh 'cloudguard fsp -C fsp template.yml --region us-east-1'
+                    sh 'cloudguard fsp -C template.yml --region us-east-1'
                     sh 'aws cloudformation package --template template.protected.yml --s3-bucket cicd-cp --output-template output.template.yml'
                     sh 'aws cloudformation deploy --template-path ${context.WORKSPACE}/output.template.yml --stack-name myapp --capabilities CAPABILITY_IAM'
 
