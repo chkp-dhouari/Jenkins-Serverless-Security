@@ -19,7 +19,7 @@ pipeline {
            
              agent {
               docker { image 'dhouari/cloudguard:test'
-                      args '--entrypoint= , -v /var/run/docker.sock:/var/run/docker.sock'
+                      args '--entrypoint= -v /var/run/docker.sock:/var/run/docker.sock'
                       }
                     }
            
@@ -32,7 +32,7 @@ pipeline {
           stage('adding runtime security with FSP and deploy serverless app'){
             agent {
                docker { image 'dhouari/cloudguard:test'
-                      args '--entrypoint= , -v /var/run/docker.sock:/var/run/docker.sock' }
+                      args '--entrypoint= -v /var/run/docker.sock:/var/run/docker.sock' }
                     }
            
                steps {
