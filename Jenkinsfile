@@ -23,7 +23,7 @@ pipeline {
            
               steps {
                 withAWS(credentials: 'awscreds', region: 'us-east-1'){
-                   sh 'cloudguard proact -m template.yml'
+                   sh 'proact -m template.yml'
                      }
                   }
              }
@@ -33,7 +33,7 @@ pipeline {
                     }
                steps {
                  withAWS(credentials: 'awscreds', region: 'us-east-1'){
-                    sh 'cloudguard fsp -C fsp template.yml --region us-east-1'
+                    sh 'fsp -C fsp template.yml --region us-east-1'
                     sh 'aws cloudformation package --template template.protected.yml --s3-bucket cicd-cp --output-template output.template.yml'
                     sh 'aws cloudformation deploy --template-path ${context.WORKSPACE}/output.template.yml --stack-name myapp --capabilities CAPABILITY_IAM'
 
