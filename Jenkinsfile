@@ -18,8 +18,9 @@ pipeline {
           stage('CloudGuard Proact Code and Compliance Scan'){
            
              agent {
-              docker { image 'dhouari/cloudguard:beta' }
-                   }
+              docker { image 'dhouari/cloudguard:beta'
+                       args '--entrypoint=' 
+                    }
            
               steps {
                 withAWS(credentials: 'awscreds', region: 'us-east-1'){
