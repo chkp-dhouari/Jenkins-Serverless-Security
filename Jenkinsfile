@@ -18,7 +18,7 @@ pipeline {
           stage('CloudGuard Proact Code and Compliance Scan'){
            
              agent {
-              docker { image 'dhouari/cloudguard' }
+              docker { image 'dhouari/cloudguard' --entrypoint "cloudguard"}
                    }
            
               steps {
@@ -29,7 +29,7 @@ pipeline {
              }
            stage('adding runtime security with FSP and deploy serverless app'){
               agent {
-                     docker { image 'dhouari/cloudguard' }
+                     docker { image 'dhouari/cloudguard' --entrypoint "cloudguard"}
                     }
                steps {
                  withAWS(credentials: 'awscreds', region: 'us-east-1'){
