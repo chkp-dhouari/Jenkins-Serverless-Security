@@ -19,7 +19,7 @@ pipeline {
                  script {      
                     try { 
                 withAWS(credentials: 'awscreds', region: 'us-east-1'){
-                   sh 'cloudguard proact -m template.yml --no-docker'
+                   sh 'cloudguard proact -vm template.yml --no-docker'
                         }
                     } catch (Exception e) {
     
