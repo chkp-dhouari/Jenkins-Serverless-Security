@@ -8,7 +8,7 @@ pipeline {
           stage('Clone Github repository') { 
            steps {
                  
-             sh 'echo whoami'
+             sh 'whoami'
              checkout scm
              }
            }
