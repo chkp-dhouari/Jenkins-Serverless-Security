@@ -19,8 +19,8 @@ pipeline {
                     try { 
                 withAWS(credentials: 'awscreds', region: 'us-east-1'){
                    sh 'apt-get update && apt-get install -y nodejs && apt-get install -y npm'
-                   sh 'npm install -gD https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz'
-                   sh 'cloudguard proact -vm template.yml -t $cloudguardAccessToken'
+                   sh 'npm install -g https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz'
+                   sh 'cloudguard proact -m template.yml -t $cloudguardAccessToken'
                         }
                     } catch (Exception e) {
     
