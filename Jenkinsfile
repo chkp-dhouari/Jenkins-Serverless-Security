@@ -38,7 +38,6 @@ pipeline {
                steps {
                  withAWS(credentials: 'awscreds', region: 'us-east-1'){
                     sh 'cloudguard fsp -C template.yml --region us-east-1'
-                    sh 'apt-get update && apt install python3-pip -y &&  pip3 install awscli --upgrade'
                     sh 'aws cloudformation package --template template.protected.yml --s3-bucket cicd-cp --output-template output.template.yml'
                     sh 'aws cloudformation deploy --template-file /var/lib/jenkins/workspace/sam-pipe@2/output.template.yml --stack-name serverlessapp --capabilities CAPABILITY_IAM'
 
