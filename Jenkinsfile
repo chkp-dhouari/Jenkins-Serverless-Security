@@ -1,7 +1,7 @@
 pipeline {
       agent any
        environment {
-           cloudguardAccessToken = credentials("token2")
+           cloudguardAccessToken = credentials('token2')
        }
      stages {
          
@@ -24,7 +24,7 @@ pipeline {
                  script {      
                     try { 
                 withAWS(credentials: 'awscreds', region: 'us-east-1'){
-                   sh 'cloudguard proact -vm template.yml'
+                   sh 'cloudguard proact -vm template.yml -t $cloudguardAccessToken'
                         }
                     } catch (Exception e) {
     
