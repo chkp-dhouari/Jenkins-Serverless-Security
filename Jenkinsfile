@@ -40,7 +40,7 @@ pipeline {
                  withAWS(credentials: 'awscreds', region: 'us-east-1'){
                     sh 'cloudguard fsp -C template.yml --region us-east-1 -t $cloudguardAccessToken'
                     sh 'aws cloudformation package --template template.protected.yml --s3-bucket cicd-cp --output-template output.template.yml'
-                    sh 'aws cloudformation deploy --template-file /var/lib/jenkins/workspace/sam-pipe@2/output.template.yml --stack-name serverlessapp --capabilities CAPABILITY_IAM --parameter-overrides ServiceCount=1'
+                    sh 'aws cloudformation deploy --template-file /var/lib/jenkins/workspace/sam-pipe@2/output.template.yml --stack-name cgsapp --capabilities CAPABILITY_IAM --parameter-overrides ServiceCount=1'
 
                     }
                  }
