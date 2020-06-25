@@ -1,5 +1,8 @@
 pipeline {
       agent any
+       environment {
+           GGToken = credentials("token2")
+       }
      stages {
          
           stage('Clone Github repository') { 
@@ -21,7 +24,7 @@ pipeline {
                  script {      
                     try { 
                 withAWS(credentials: 'awscreds', region: 'us-east-1'){
-                   sh 'cloudguard proact -vm template.yml'
+                   sh 'cloudguard proact -vm template.yml' -t GCToken
                         }
                     } catch (Exception e) {
     
