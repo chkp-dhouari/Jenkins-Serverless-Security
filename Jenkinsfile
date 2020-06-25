@@ -30,7 +30,7 @@ pipeline {
                  }
                }
            
-           stage('adding runtime security with FSP and deploy serverless app'){
+           stage('adding runtime security with FSP and deploy serverless app to AWS'){
               agent {
                 docker { image 'dhouari/devsecops'
                          args '--entrypoint= ' }
