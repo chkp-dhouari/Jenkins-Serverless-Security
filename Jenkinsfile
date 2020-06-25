@@ -10,8 +10,8 @@ pipeline {
            
           stage('CloudGuard Proact Code and Compliance Scan'){
              agent {
-              docker { image 'dhouari/cloudguard:test'
-                      args '--entrypoint= -v /var/run/docker.sock:/var/run/docker.sock'
+              docker { image 'dhouari/devsecops'
+                      args '--entrypoint= -v /var/run/docker.sock:/var/run/docker.sock --privileged'
                       }
                     }
            
@@ -32,7 +32,7 @@ pipeline {
            stage('adding runtime security with FSP and deploy serverless app'){
               agent {
                 docker { image 'dhouari/cloudguard:test'
-                         args '--entrypoint= -v /var/run/docker.sock:/var/run/docker.sock' }
+                         args '--entrypoint= ' }
                     }
            
                steps {
